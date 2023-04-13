@@ -1,15 +1,31 @@
-import * as React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { Home } from './pages/Home'
-import { Login } from './pages/Login'
+import React, { useContext } from 'react'
 
-export default function App() {
+import Navbar from './components/Navbar'
+import AppRouter from './components/AppRouter'
+import './App.css'
+
+import { useAuthState } from 'react-firebase-hooks/auth'
+import Loader from './components/Loader'
+import { Context } from './main'
+// @ts-ignore
+import { BrowserRouter } from 'react-router-dom'
+
+
+const App = () => {
+    // @ts-ignore
+    const { auth } = useContext(Context)
+    const [user, loading, error] = useAuthState(auth)
+
+    if (loading) {
+        return <Loader />
+    }
+
     return (
-        <Routes>
-            <Route>
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-            </Route>
-        </Routes>
+        <BrowserRouter>
+            <Navbar />
+            <AppRouter />
+        </BrowserRouter>
     )
 }
+
+export default App
