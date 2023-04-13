@@ -42,7 +42,7 @@ const Chat = () => {
                         {messages.map((message: any, index) => (
                                 <div key={index} style={{
                                     margin: 10,
-                                    border: user.uid === message.uid ? '2px solid green' : '2px dashed red',
+                                    border: user.uid === message.uid ? '2px solid blue' : '2px solid red',
                                     marginLeft: user.uid === message.uid ? 'auto' : '10px',
                                     width: 'fit-content',
                                     padding: 5,
@@ -53,7 +53,7 @@ const Chat = () => {
                                     </Grid>
                                     <div>{message.text}</div>
                                 </div>
-                            )
+                            ),
                         )}
                     </div>
                 )}
